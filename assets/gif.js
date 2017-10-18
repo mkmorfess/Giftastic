@@ -9,12 +9,6 @@ $(document).ready(function(){
 
 	};
 
-	$(".click").on("click", function() {
-
-				alert("Brooks a bitch")
-
-
-			});
 
 	$("#form").submit(function(event) {
 		event.preventDefault();
@@ -29,16 +23,19 @@ $(document).ready(function(){
 
 			console.log(topics)
 
-				$(".click").on("click", function() {
-
-				alert("Brooks a bitch")
-
-
-			})
+				
 			};
 			
 		});
 	});
+
+
+	$(".click").on("click", function() {
+
+				console.log("It's working!")
+
+
+			})
 
 // var url = "api.giphy.com/v1/gifs/search?api_key=lv3qfDrkQTRe2crwKMOu3a11pwpDGlVy&limit=9&q="
 
