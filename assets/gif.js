@@ -6,15 +6,15 @@ $(document).ready(function(){
 	for (var i = 0; i < topics.length; i++) {
 
 		$(".button").append("<button class='btn btn-primary click'>" + topics[i] + "</button>")
-	
+
+	};
+
 	$(".click").on("click", function() {
 
 				alert("Brooks a bitch")
 
 
 			});
-
-	};
 
 	$("#form").submit(function(event) {
 		event.preventDefault();
