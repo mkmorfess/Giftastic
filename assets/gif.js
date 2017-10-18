@@ -9,7 +9,7 @@ $(document).ready(function(){
 	
 	$(".click").on("click", function() {
 
-				console.log("its working!")
+				alert("Brooks a bitch")
 
 
 			});
@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 				$(".click").on("click", function() {
 
-				console.log("its working!")
+				alert("Brooks a bitch")
 
 
 			})
