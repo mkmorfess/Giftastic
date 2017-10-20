@@ -40,22 +40,28 @@ $("#button").empty();
 	function displayGif() {
 
         var gif = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=lv3qfDrkQTRe2crwKMOu3a11pwpDGlVy&limit=9&q=" + topics;
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=lv3qfDrkQTRe2crwKMOu3a11pwpDGlVy&limit=9&rating=g&rating=pg&q=" + topics;
 
         $.ajax({
           url: queryURL,
           method: "GET"
         }).done(function(response) {
 
-        	// console.log(response)
+        	 console.log(response)
 
-        	for (var i = 0; i < 9; i++) {
+        	for (var i = 0; i < response.data.length; i++) {
 
-        		console.log(response.data)
+        		var image = $("<img>")
+        		image.attr("class", "col-md-4")
+        		image.attr("src", response.data[i].images.fixed_height_still.url)
+        		image.attr("data-still", response.data[i].images.fixed_height_still.url)
+        		image.attr("data-animate", response.data[i].images.fixed_height.url)
+        		image.attr("style", "width:250px; height:250px")
 
-          $("#gifs").text(JSON.stringify(response.data.i.url));
+	        		
+        			$('#gifs').append(image);
+	                }
 
-      }
           initialButtons();
         });
       }
@@ -66,15 +72,4 @@ $(document).on("click", ".click", displayGif);
 
 	initialButtons();
 
-// var url = "https://api.giphy.com/v1/gifs/search?api_key=lv3qfDrkQTRe2crwKMOu3a11pwpDGlVy&limit=9&q="
-
-// for (var i = 0; i < topics.length; i++) {
-// $.ajax({
-// 	url: url + topics[i],
-// 	method: "GET"
-// }).done(function(response){
-// 	console.log(response)
-// })
-
-// }
 });
