@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-var topics = ["People", "Animals", "Garden", "Games"];
+var topics = ["Redskins", "Capitals", "Wizards", "Nationals"];
 
 function initialButtons() {
 
@@ -40,7 +40,7 @@ $("#button").empty();
 	function displayGif() {
 
         var gif = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=lv3qfDrkQTRe2crwKMOu3a11pwpDGlVy&limit=9&rating=g&rating=pg&q=" + topics;
+        var queryURL = "https://api.giphy.com/v1/gifs/search?limit=9&rating=g&q=" + gif + "&api_key=lv3qfDrkQTRe2crwKMOu3a11pwpDGlVy";
 
         $.ajax({
           url: queryURL,
@@ -52,11 +52,11 @@ $("#button").empty();
         	for (var i = 0; i < response.data.length; i++) {
 
         		var image = $("<img>")
-        		image.attr("class", "col-md-4")
+        		image.addClass("col-md-6")
         		image.attr("src", response.data[i].images.fixed_height_still.url)
         		image.attr("data-still", response.data[i].images.fixed_height_still.url)
         		image.attr("data-animate", response.data[i].images.fixed_height.url)
-        		image.attr("style", "width:250px; height:250px")
+        		image.attr("style", "width:300px; height:300px")
 
 	        		
         			$('#gifs').append(image);
