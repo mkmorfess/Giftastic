@@ -1,75 +1,98 @@
-$(document).ready(function(){
+	$(document).ready(function(){
 
-var topics = ["Redskins", "Capitals", "Wizards", "Nationals"];
+	var topics = ["Redskins", "Capitals", "Wizards", "Nationals"];
 
-function initialButtons() {
+	function initialButtons() {
 
-$("#button").empty();
+	$("#button").empty();
 
 
 
-	for (var i = 0; i < topics.length; i++) {
+		for (var i = 0; i < topics.length; i++) {
 
-		var button = $("<button>");
-		button.addClass("btn btn-primary click");
-		button.attr("data-name", topics[i]);
-		button.text(topics[i]);
-		$("#button").append(button);
+			var button = $("<button>");
+			button.addClass("btn btn-primary click");
+			button.attr("data-name", topics[i]);
+			button.text(topics[i]);
+			$("#button").prepend(button);
+
+		};
 
 	};
 
-};
+		$("#form").submit(function(event) {
+			event.preventDefault();
+			var selection = $("#input").val().trim()
+			topics.push(selection)
+			console.log(topics)
 
-	$("#form").submit(function(event) {
-		event.preventDefault();
-		var selection = $("#input").val().trim()
-		topics.push(selection)
-		console.log(topics)
+			initialButtons();
+		});
+
+
+		function displayGif() {
+
+	        var gif = $(this).attr("data-name");
+	        var queryURL = "https://api.giphy.com/v1/gifs/search?limit=9&rating=g&q=" + gif + "&api_key=lv3qfDrkQTRe2crwKMOu3a11pwpDGlVy";
+
+	        $.ajax({
+	          url: queryURL,
+	          method: "GET"
+	        }).done(function(response) {
+
+	        	 console.log(response)
+
+	        	for (var i = 0; i < response.data.length; i++) {
+
+	        		var image = $("<img>")
+	        		image.addClass("col-md-6")
+	        		image.attr("src", response.data[i].images.fixed_height_still.url)
+	        		image.attr("data-still", response.data[i].images.fixed_height_still.url)
+	        		image.attr("data-animate", response.data[i].images.fixed_height.url)
+	        		image.attr("style", "width:300px; height:300px")
+	        		image.attr("data-state", "still")
+	        		image.attr("class", "giffy")
+		        		
+	        			$('#gifs').prepend(image);
+	        			$('#gifs').prepend("Rating: " + response.data[i].rating)
+
+	        		}
+
+	$(".giffy").on("click", function() {
+	        		 
+	        		 var state = $(this).attr("data-state");
+
+
+	        		 if (state === "still") {
+
+
+
+	        $(this).attr("src", $(this).attr("data-animate"))
+	        $(this).attr("data-state", "animate")
+
+
+	       }
+
+	       if (state === "animate") {
+
+	        $(this).attr("src", $(this).attr("data-still"))
+	        $(this).attr("data-state", "still")
+
+
+	       } 
+	   });
+
+		                })
+
+	          initialButtons();
+
+
+	        };
+	      
+
+
+	$(document).on("click", ".click", displayGif);
 
 		initialButtons();
+
 	});
-
-	$(".click").on("click", function() {
-
-				console.log("It's working!")
-
-
-			})
-
-
-	function displayGif() {
-
-        var gif = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?limit=9&rating=g&q=" + gif + "&api_key=lv3qfDrkQTRe2crwKMOu3a11pwpDGlVy";
-
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).done(function(response) {
-
-        	 console.log(response)
-
-        	for (var i = 0; i < response.data.length; i++) {
-
-        		var image = $("<img>")
-        		image.addClass("col-md-6")
-        		image.attr("src", response.data[i].images.fixed_height_still.url)
-        		image.attr("data-still", response.data[i].images.fixed_height_still.url)
-        		image.attr("data-animate", response.data[i].images.fixed_height.url)
-        		image.attr("style", "width:300px; height:300px")
-
-	        		
-        			$('#gifs').append(image);
-	                }
-
-          initialButtons();
-        });
-      }
-
-
-
-$(document).on("click", ".click", displayGif);
-
-	initialButtons();
-
-});
