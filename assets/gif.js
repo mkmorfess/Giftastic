@@ -1,6 +1,6 @@
 	$(document).ready(function(){
 
-	var topics = ["Redskins", "Capitals", "Wizards", "Nationals"];
+	var topics = ["Redskins", "Capitals", "Wizards", "Nationals", "Texans", "Rockets", "Astros", "Ravens", "Orioles"];
 
 	function initialButtons() {
 
@@ -14,7 +14,7 @@
 			button.addClass("btn btn-primary click");
 			button.attr("data-name", topics[i]);
 			button.text(topics[i]);
-			$("#button").prepend(button);
+			$("#button").append(button);
 
 		};
 
@@ -52,9 +52,15 @@
 	        		image.attr("style", "width:300px; height:300px")
 	        		image.attr("data-state", "still")
 	        		image.attr("class", "giffy")
-		        		
+
+	        		var rating = $("<inline>")
+	        		rating.html("Rating: <strong>" + response.data[i].rating + "</strong>")
+
+	        		
+
+		        		$('#gifs').prepend(rating);
 	        			$('#gifs').prepend(image);
-	        			$('#gifs').prepend("Rating: " + response.data[i].rating)
+
 
 	        		}
 
