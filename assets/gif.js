@@ -1,6 +1,6 @@
 	$(document).ready(function(){
 
-	var topics = ["Redskins", "Capitals", "Wizards", "Nationals", "Texans", "Rockets", "Astros", "Ravens", "Orioles"];
+	var topics = ["Washington Redskins", "Washington Capitals", "Washington Wizards", "Washington Nationals", "Houston Texans", "Houston Rockets", "Houston Astros", "Baltimore Ravens", "Baltimore Orioles"];
 
 	function initialButtons() {
 
