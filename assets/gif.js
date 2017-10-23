@@ -16,6 +16,7 @@
 			button.text(topics[i]);
 			$("#button").append(button);
 
+		
 		};
 
 	};
@@ -23,10 +24,18 @@
 		$("#form").submit(function(event) {
 			event.preventDefault();
 			var selection = $("#input").val().trim()
+
+			if (selection === "") {
+				alert("You must enter a value before clicking submit")
+			}
+
+			else {
 			topics.push(selection)
 			console.log(topics)
 
 			initialButtons();
+
+		}
 		});
 
 
@@ -58,8 +67,8 @@
 
 	        		
 
-		        		$('#gifs').prepend(rating);
-	        			$('#gifs').prepend(image);
+		        		
+	        			$('#gifs').prepend(rating).prepend(image);
 
 
 	        		}
